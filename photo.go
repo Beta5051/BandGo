@@ -18,30 +18,30 @@ type GetPhotosResponse struct {
 
 type Album struct {
 	PhotoAlbumKey string `json:"photo_album_key"`
-	Name string `json:"name"`
-	PhotoCount uint `json:"photo_count"`
-	CreatedAt uint `json:"created_at"`
-	Author Author `json:"author"`
+	Name          string `json:"name"`
+	PhotoCount    uint   `json:"photo_count"`
+	CreatedAt     uint   `json:"created_at"`
+	Author        Author `json:"author"`
 }
 
 type Photo struct {
-	Height uint `json:"height"`
-	Width uint `json:"width"`
-	CreatedAt string `json:"created_at"`
-	Url string `json:"url"`
-	Author Author `json:"author"`
-	PhotoAlbumKey string `json:"photo_album_key"`
-	PhotoKey string `json:"photo_key"`
-	CommentCount uint `json:"comment_count"`
-	EmotionCount uint `json:"emotion_count"`
-	IsVideoThumbnail bool `json:"is_video_thumbnail"`
+	Height           uint   `json:"height"`
+	Width            uint   `json:"width"`
+	CreatedAt        string `json:"created_at"`
+	Url              string `json:"url"`
+	Author           Author `json:"author"`
+	PhotoAlbumKey    string `json:"photo_album_key"`
+	PhotoKey         string `json:"photo_key"`
+	CommentCount     uint   `json:"comment_count"`
+	EmotionCount     uint   `json:"emotion_count"`
+	IsVideoThumbnail bool   `json:"is_video_thumbnail"`
 }
 
-func (c *Client) GetAlbums(band_key string, next_params interface{}) (albums []Album, return_next_params interface{}, err error){
+func (c *Client) GetAlbums(band_key string, next_params interface{}) (albums []Album, return_next_params interface{}, err error) {
 	data := map[string]string{
 		"band_key": band_key,
 	}
-	if v, ok := next_params.(NextParams); ok{
+	if v, ok := next_params.(NextParams); ok {
 		data["after"] = v.After
 		data["limit"] = fmt.Sprint(v.Limit)
 	}
@@ -58,12 +58,12 @@ func (c *Client) GetAlbums(band_key string, next_params interface{}) (albums []A
 	return
 }
 
-func (c *Client) GetPhotos(band_key, photo_album_key string, next_params interface{}) (photos []Photo, return_next_params interface{}, err error){
+func (c *Client) GetPhotos(band_key, photo_album_key string, next_params interface{}) (photos []Photo, return_next_params interface{}, err error) {
 	data := map[string]string{
-		"band_key": band_key,
+		"band_key":        band_key,
 		"photo_album_key": photo_album_key,
 	}
-	if v, ok := next_params.(NextParams); ok{
+	if v, ok := next_params.(NextParams); ok {
 		data["after"] = v.After
 		data["limit"] = fmt.Sprint(v.Limit)
 	}

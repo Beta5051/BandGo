@@ -90,7 +90,7 @@ func (c *Client) CreatePost(band_key, content string, do_push bool) (return_band
 	return
 }
 
-func (c *Client) RemovePost(band_key, post_key string) (message string, err error){
+func (c *Client) RemovePost(band_key, post_key string) (message string, err error) {
 	resp, err := c.request("POST", removePost, map[string]string{
 		"band_key": band_key,
 		"post_key": post_key,
