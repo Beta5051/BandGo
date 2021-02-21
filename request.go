@@ -30,6 +30,7 @@ func (c *Client) request(method, url string, data map[string]string) (response D
 	if err != nil {
 		return
 	}
+	defer resp.Body.Close()
 
 	bytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
